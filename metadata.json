@@ -1,0 +1,7 @@
+{
+  "name": "5",
+  "description": "A sophisticated digital forensics platform using AI to detect image manipulations, splicing, and generative artifacts for academic research and investigative purposes.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}

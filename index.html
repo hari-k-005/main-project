@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepScan - Digital Image Forensics</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --slate-950: #020617;
+            --sky-500: #0ea5e9;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        /* HUD Grid background */
+        .hud-grid {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
+        }
+        .animate-scan {
+            animation: scan 3s linear infinite;
+        }
+        @keyframes scan {
+            0% { top: 0%; opacity: 0; }
+            5% { opacity: 1; }
+            95% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+
+        .print-only {
+            display: none;
+        }
+
+        /* Print Media Queries */
+        @media print {
+            body {
+                background: white !important;
+                color: black !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            .hud-grid {
+                background-image: none !important;
+            }
+            .no-print, header, footer, button, .chat-assistant-container, .no-print-indicator {
+                display: none !important;
+            }
+            .print-only {
+                display: block !important;
+            }
+            main {
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            .shadow-2xl, .shadow-xl, .shadow-lg, .shadow-sm {
+                box-shadow: none !important;
+                border: 1px solid #000 !important;
+            }
+            .rounded-[2.5rem], .rounded-[3rem], .rounded-3xl {
+                border-radius: 0 !important;
+            }
+            .bg-slate-950, .bg-slate-900 {
+                background-color: #fff !important;
+                color: #000 !important;
+                border: 2px solid #000 !important;
+            }
+            .text-white {
+                color: #000 !important;
+            }
+            .bg-sky-50, .bg-indigo-50, .bg-slate-50, .bg-sky-100 {
+                background-color: #fff !important;
+                border: 1px solid #000 !important;
+            }
+            .text-sky-600, .text-indigo-600, .text-rose-600, .text-emerald-600 {
+                color: #000 !important;
+                font-weight: 900 !important;
+            }
+            .recharts-radar-grid-polyline {
+                stroke: #000 !important;
+            }
+            .recharts-polar-grid-concentric-path {
+                stroke: #000 !important;
+            }
+            
+            @page {
+                size: A4;
+                margin: 1.5cm;
+            }
+
+            .report-section {
+                page-break-inside: avoid;
+                margin-bottom: 3rem;
+                padding: 1.5rem !important;
+                border: 1px solid #000 !important;
+            }
+
+            .academic-header {
+                border-bottom: 4px solid #000;
+                padding-bottom: 1.5rem;
+                margin-bottom: 3rem;
+            }
+
+            .print-data-table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 1rem;
+            }
+            .print-data-table th, .print-data-table td {
+                border: 1px solid #000;
+                padding: 8px;
+                text-align: left;
+                font-family: 'JetBrains Mono', monospace;
+                font-size: 10px;
+            }
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.39.0",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "recharts": "https://esm.sh/recharts@^3.7.0",
+    "framer-motion": "https://esm.sh/framer-motion@^11.0.0",
+    "lucide-react": "https://esm.sh/lucide-react@^0.344.0"
+  }
+}
+</script>
+</head>
+<body class="hud-grid">
+    <div id="root"></div>
+</body>
+</html>
